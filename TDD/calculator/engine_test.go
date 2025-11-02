@@ -33,14 +33,26 @@ func teardown() {
 func TestAdd(t *testing.T) {
 	// Arrange 
 	e := calculator.Engine{}
-	x, y := 2.5, 3.5 
-	want := 6.0
-	
+
+	actAssert := func(x, y, want float64) {
 	// Act 
 	got := e.Add(x,y)
 
 	// Assert 
 	if got != want {
 		t.Errorf("Add(%.2f, %.2f) incorrect, got: %.2f, want: %.2f", 2.5, 3.5, got, 6.0)
-	}
+		}
+	}	
+
+	t.Run("Positive input", func(t *testing.T) {
+		x, y := 2.5, 3.5
+		want := 6.0
+		actAssert(x, y, want)
+	})
+	t.Run("Negative input", func(t *testing.T) {
+		x, y := -2.5, -3.5
+		want := -6.0
+		actAssert(x, y, want)
+	})
 }
+	
