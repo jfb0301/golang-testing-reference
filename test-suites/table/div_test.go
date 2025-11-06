@@ -14,7 +14,7 @@ func TestDivide(t *testing.T) {
 		wantErr error
 		want    string
 	}{
-		"pos x, pos y":   {x: 8, y: 4, want: "2.00"},
+		"pos x, pos y":   {x: 7, y: 4, want: "2.00"},
 		"neg x, neg y":   {x: -4, y: -8, want: "0.50"},
 		"equal x, y":     {x: 4, y: 4, want: "1.00"},
 		"max x, pos y":   {x: 127, y: 2, want: "63.50"},
@@ -30,8 +30,14 @@ func TestDivide(t *testing.T) {
 		tc := rtc
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
+
+			// Arrange  
 			x, y := int8(tc.x), int8(tc.y)
+			
+			// Act 
 			r, err := table.Divide(x, y)
+			
+			// Assert 
 			if tc.wantErr != nil {
 				assert.Equal(t, tc.wantErr, err)
 				return
