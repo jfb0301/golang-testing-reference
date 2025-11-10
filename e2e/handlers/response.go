@@ -1,13 +1,12 @@
 package handlers
 
-import(
-	"fmt"
+import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
-	"github.com/jfb0301/golang-testing-reference/integration/db"
+	"github.com/PacktPublishing/Test-Driven-Development-in-Go/chapter06/db"
 )
-
 
 // Response contains all the response types of our handlers.
 type Response struct {

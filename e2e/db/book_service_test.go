@@ -4,7 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jfb0301/golang-testing-reference/e2e/db"
+	"github.com/PacktPublishing/Test-Driven-Development-in-Go/chapter06/db"
+	"github.com/PacktPublishing/Test-Driven-Development-in-Go/chapter06/mocks"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

@@ -9,7 +9,7 @@ import (
 
 // User contains all the user fields.
 type User struct {
-	ID       string `json:"id"`
+	ID       string `json:"id" gorm:"primaryKey"`
 	Name     string `json:"name"`
 	Address  string `json:"address"`
 	PostCode string `json:"post_code"`
@@ -22,15 +22,15 @@ type BookOperationsService interface {
 
 // UserService has all the dependencies required for managing users.
 type UserService struct {
-	DB 	  *gorm.DB
-	bs    BookOperationsService
+	DB *gorm.DB
+	bs BookOperationsService
 }
 
 // NewUserService initialises the UserService.
 func NewUserService(db *gorm.DB, bs BookOperationsService) *UserService {
 	return &UserService{
-		DB:    db,
-		bs:    bs,
+		DB: db,
+		bs: bs,
 	}
 }
 
@@ -38,7 +38,7 @@ func NewUserService(db *gorm.DB, bs BookOperationsService) *UserService {
 func (us *UserService) Get(id string) (*User, []Book, error) {
 	var u User
 	if r := us.DB.Where("id = ?", id).First(&u); r.Error != nil {
-		return nil, nil, fmt.Errorf("No user found for id %s:%v", id, r.Error)
+		return nil, nil, fmt.Errorf("no user found for id %s:%v", id, r.Error)
 	}
 	books, err := us.bs.ListByUser(id)
 	if err != nil {
@@ -52,8 +52,9 @@ func (us *UserService) Get(id string) (*User, []Book, error) {
 func (us *UserService) Exists(id string) error {
 	var u User
 	if r := us.DB.Where("id = ?", id).First(&u); r.Error != nil {
-		return fmt.Errorf("No user found for id %s:%v", id, r.Error)
+		return fmt.Errorf("no user found for id %s:%v", id, r.Error)
 	}
+
 	return nil
 }
 
