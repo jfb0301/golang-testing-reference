@@ -1,9 +1,9 @@
-package db
+package db_test
 
 import (
 	"testing"
 
-	"github.com/jfb0301/golang-testing-reference/test-suites/db"
+	"github.com/PacktPublishing/Test-Driven-Development-in-Go/chapter04/db"
 	"github.com/jfb0301/golang-testing-reference/test-suites/db/mocks"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

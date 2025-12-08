@@ -1,0 +1,16 @@
+FROM golang:1.19-alpine 
+WORKDIR /app
+COPY go.mod ./ 
+COPY go.sum ./ 
+COPY . .
+
+RUN go mod download
+RUN go build ./e2e/cmd 
+RUN apk --no-cache add curl 
+EXPOSE ${BOOKSWAP_PORT}
+
+CMD [ "./cmd" ]
+
+
+
+
